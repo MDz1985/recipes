@@ -1,21 +1,24 @@
 <div class="flex gap-3 h-full p-5">
-  <div class="bg-fuchsia-300 p-3">
-    <h4>Categories</h4>
-  </div>
-  <div class="flex flex-col p-3 w-full">
-    <div class="flex justify-between">
-      <mat-form-field class="max-w-[500px]" appearance="outline">
+  <div class="flex flex-col p-3 w-full gap-3">
+    <div class="flex justify-between items-center">
+      <mat-form-field class="max-w-[500px]" appearance="outline" subscriptSizing="dynamic">
         <mat-label>search</mat-label>
         <input matInput #search (input)="findRecipe(search.value)">
       </mat-form-field>
       <button mat-stroked-button (click)="addRecipe()">add recipe</button>
     </div>
-    <h2 class="text-fuchsia-900 underline">Choose your favorite recipe</h2>
-    <div class="grid grid-cols-3 gap-2">
-      @for (recipe of recipes(); track recipe.id) {
-        <app-recipe-item [recipe]="recipe" (recipeForDeleteId)="removeRecipe($event)"/>
-      }
-    </div>
+    @if (isLoading()) {
+      <div class="flex flex-grow items-center justify-center bg-blend-color">
+        <mat-progress-spinner mode="indeterminate" diameter="50"></mat-progress-spinner>
+      </div>
+    } @else {
+      <div class="grid grid-cols-1 gap-2 desktop:grid-cols-3">
+        @for (recipe of recipes(); track recipe.id) {
+          <app-recipe-item [recipe]="recipe" (recipeForDeleteId)="removeRecipe($event)"/>
+        }
+      </div>
+    }
   </div>
 </div>
+
 

@@ -29,7 +29,8 @@ export const CurrentRecipeStore = signalStore(
         switchMap((id) => {
           return recipesService.getRecipeById(id).pipe(
             tapResponse({
-              next: (recipe) => patchState(store, { recipe }),
+              // todo: remove as Recipe when backend will be fixed
+              next: (recipe) => patchState(store, { recipe: recipe as Recipe }),
               error: console.error,
               finalize: () => patchState(store, { isLoading: false }),
             })
@@ -42,7 +43,8 @@ export const CurrentRecipeStore = signalStore(
         patchState(store, { isLoading: true });
         return recipesService.addStep(store.recipe()?.id as string, step).pipe(
           tapResponse({
-            next: (recipe) => patchState(store, { recipe }),
+            // todo: remove as Recipe when backend will be fixed
+            next: (recipe) => patchState(store, { recipe: recipe as Recipe }),
             error: console.error,
             finalize: () => patchState(store, { isLoading: false }),
           })
@@ -54,7 +56,8 @@ export const CurrentRecipeStore = signalStore(
         patchState(store, { isLoading: true });
         return recipesService.addIngredient(store.recipe()?.id as string, ingredient).pipe(
           tapResponse({
-            next: (recipe) => patchState(store, { recipe }),
+            // todo: remove as Recipe when backend will be fixed
+            next: (recipe) => patchState(store, { recipe: recipe as Recipe }),
             error: console.error,
             finalize: () => patchState(store, { isLoading: false }),
           })

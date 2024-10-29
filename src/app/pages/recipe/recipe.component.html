@@ -3,9 +3,9 @@
     <div class="flex flex-col flex-grow">
       <button mat-button (click)="toggleMode()">
         @if (isEditMode()) {
-          Switch to Edit mode
-        } @else {
           Switch to View mode
+        } @else {
+          Switch to Edit mode
         }
       </button>
       <h1 class="text-headline-large py-5">{{ recipe.name }}</h1>
