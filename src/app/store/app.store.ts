@@ -17,9 +17,6 @@ export const AppStore = signalStore(
     }),
   })),
 
-  // withComputed(({ user }) => ({
-  //   token: computed(() => (user()?).accessToken),
-  // })),
   withMethods((_, authService = inject(AuthService)) => ({
     login: (email: string, password: string) => authService.login(email, password),
     logout: () => authService.logout(),

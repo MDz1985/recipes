@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, inject, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 import { RecipeItemComponent } from 'src/app/pages/recipes-list/components/recipe-item/recipe-item.component';
 import { AsyncPipe } from '@angular/common';
 import { RecipesStore } from 'src/app/store/recipes-store';
@@ -9,6 +9,7 @@ import { filter } from 'rxjs';
 import { AddRecipeModalComponent } from 'src/app/components/modals/add-recipe-modal/add-recipe-modal.component';
 import { EnquiryModalComponent } from 'src/app/components/modals/enquiry-modal/enquiry-modal.component';
 import { MatProgressSpinner } from '@angular/material/progress-spinner';
+import { AppStore } from 'src/app/store/app.store';
 
 @Component({
   selector: 'app-recipes-list',
@@ -27,11 +28,13 @@ import { MatProgressSpinner } from '@angular/material/progress-spinner';
   providers: [RecipesStore],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class RecipesListComponent implements OnInit {
+export class RecipesListComponent {
   private readonly _store = inject(RecipesStore);
+  private readonly _appStore = inject(AppStore);
   private readonly _dialog = inject(MatDialog);
   readonly recipes = this._store.recipes;
   readonly isLoading = this._store.isLoading;
+  readonly isLoggedIn = this._appStore.isLoggedIn;
 
   findRecipe(value: string) {
     this._store.updateQuery(value);
@@ -53,16 +56,5 @@ export class RecipesListComponent implements OnInit {
       .subscribe(() => {
         this._store.removeRecipe(id);
       });
-
-  }
-
-  ngOnInit(): void {
-    this.initialiseFilter();
-  }
-
-
-  private initialiseFilter() {
-    const query = this._store.filter.query;
-    this._store.loadByQuery(query);
   }
 }

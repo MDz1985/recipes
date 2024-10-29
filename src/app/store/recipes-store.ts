@@ -1,7 +1,7 @@
-import { patchState, signalStore, withComputed, withMethods, withState } from '@ngrx/signals';
+import { patchState, signalStore, withComputed, withHooks, withMethods, withState } from '@ngrx/signals';
 import { tapResponse } from '@ngrx/operators';
 import { rxMethod } from '@ngrx/signals/rxjs-interop';
-import { computed, inject } from '@angular/core';
+import { computed, effect, inject } from '@angular/core';
 import {
   debounceTime,
   distinctUntilChanged,
@@ -12,6 +12,7 @@ import {
 import { RecipesService } from 'src/app/services/recipes.service';
 import { Router } from '@angular/router';
 import { Recipe, RecipeInput } from 'graphql/generated';
+import { AppStore } from 'src/app/store/app.store';
 
 type RecipesState = {
   recipes: Recipe[];
@@ -38,6 +39,11 @@ export const RecipesStore = signalStore(
     }),
   })),
   withMethods((store, recipesService = inject(RecipesService), router = inject(Router)) => ({
+    _addRecipeToState(recipe: Recipe) {
+      patchState(store, (state) => ({
+        recipes: [...state.recipes, recipe],
+      }));
+    },
     updateQuery(query: string): void {
       patchState(store, (state) => ({ filter: { ...state.filter, query } }));
     },
@@ -52,8 +58,11 @@ export const RecipesStore = signalStore(
         switchMap((query) => {
           return recipesService.getByQuery(query).pipe(
             tapResponse({
-              next: (recipes: Recipe[]) => patchState(store, { recipes, isLoading: false }),
-              error: (error) => {console.error(error); patchState(store, { isLoading: false })},
+              next: (recipes: Recipe[]) => patchState(store, { recipes: recipes, isLoading: false }),
+              error: (error) => {
+                console.error(error);
+                patchState(store, { isLoading: false });
+              },
             }),
           );
         })
@@ -76,7 +85,7 @@ export const RecipesStore = signalStore(
                 } else {
                   throw new Error('Recipe not added');
                 }
-                router.navigate(['/recipe', recipe?.id]);
+                // router.navigate(['/recipe', recipe?.id]);
               },
               error: console.error,
               finalize: () => patchState(store, { isLoading: false }),
@@ -104,6 +113,26 @@ export const RecipesStore = signalStore(
           );
         })
       )
-    )
+    ),
+
+    reset: () => {
+      patchState(store, { ...initialState, isLoading: false });
+    }
   })),
+  withHooks((store) => {
+    const appStore = inject(AppStore);
+    return {
+      onInit: () => {
+        effect(() => {
+          const isUserLogged = appStore.isLoggedIn();
+          const query = store.filter.query();
+          if (isUserLogged) {
+            store.loadByQuery(query);
+          } else {
+            store.reset();
+          }
+        }, { allowSignalWrites: true });
+      }
+    };
+  })
 );

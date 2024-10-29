@@ -16,6 +16,6 @@ export class AuthService {
   }
 
   public async logout() {
-    return this._auth.signOut();
+    return this._auth.signOut().then(()=>this._router.navigate(['/login']));
   }
 }

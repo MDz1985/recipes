@@ -32,7 +32,7 @@
     "@ngx-dropzone/cdk": "^18.1.0",
     "@ngx-dropzone/material": "^18.1.0",
     "apollo-angular": "^7.0.2",
-    "express": "^4.18.2",
+    "express": "5.0.0",
     "graphql": "^16.9.0",
     "rxjs": "~7.8.0",
     "tslib": "^2.3.0",
