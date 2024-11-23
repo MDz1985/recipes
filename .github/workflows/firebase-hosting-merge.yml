@@ -50,11 +50,10 @@ jobs:
       - run: echo "Environment.ts file:"
       - run: cat src/environments/environment.ts
       - run: echo "${{ secrets.API_URL }}"
-
-      - run: npm ci && npm run gql-generate && npm run build
+# Remove --legacy-peer-deps when ngrx will be updated
+      - run: npm ci --legacy-peer-deps && npm run gql-generate && npm run build
       - uses: FirebaseExtended/action-hosting-deploy@v0
         with:
-          node-version: 20
           repoToken: '${{ secrets.GITHUB_TOKEN }}'
           firebaseServiceAccount: '${{ secrets.FIREBASE_SERVICE_ACCOUNT_RECIPES_91982 }}'
           channelId: live
