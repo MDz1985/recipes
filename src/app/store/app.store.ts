@@ -8,8 +8,9 @@ import { tap } from 'rxjs';
 export const AppStore = signalStore(
   { providedIn: 'root' },
   withComputed((_, auth = inject(Auth)) => ({
-    user: toSignal(user(auth), { initialValue: null, pipe: tap((user) => console.log('Signal is loading', user)), }),
-    token: toSignal(idToken(auth), { initialValue: null, pipe: tap((token) => console.log('Signal is loading', token)), }),
+    // todo: remove console
+    user: toSignal(user(auth).pipe(tap((user) => console.log('Signal is loading', user)))),
+    token: toSignal(idToken(auth).pipe(tap((token) => console.log('Signal is loading', token)))),
   })),
   withComputed(({ user }) => ({
     isLoggedIn: computed(() => {

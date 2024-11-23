@@ -9,14 +9,13 @@ import { IngredientInput, Recipe, StepInput } from 'graphql/generated';
 import { AddIngredientModalComponent } from 'src/app/components/modals/add-ingredient-modal/add-ingredient-modal.component';
 
 @Component({
-  selector: 'app-recipe',
-  standalone: true,
-  imports: [
-    MatButton
-  ],
-  providers: [CurrentRecipeStore],
-  templateUrl: './recipe.component.html',
-  styleUrl: './recipe.component.scss'
+    selector: 'app-recipe',
+    imports: [
+        MatButton
+    ],
+    providers: [CurrentRecipeStore],
+    templateUrl: './recipe.component.html',
+    styleUrl: './recipe.component.scss'
 })
 export class RecipeComponent implements OnInit {
   private readonly _store = inject(CurrentRecipeStore);

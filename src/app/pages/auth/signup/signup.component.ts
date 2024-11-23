@@ -1,5 +1,5 @@
 import { Component, inject, signal, WritableSignal } from '@angular/core';
-import { MatCard, MatCardActions, MatCardContent, } from '@angular/material/card';
+import { MatCard, MatCardContent, } from '@angular/material/card';
 import { MatButton, MatIconButton } from '@angular/material/button';
 import { MatError, MatFormField, MatLabel, MatSuffix } from '@angular/material/form-field';
 import { MatInput } from '@angular/material/input';
@@ -11,27 +11,25 @@ import { MatIcon } from '@angular/material/icon';
 import { RouterLink } from '@angular/router';
 
 @Component({
-  selector: 'app-signup',
-  standalone: true,
-  imports: [
-    MatCard,
-    MatCardActions,
-    MatButton,
-    MatCardContent,
-    MatFormField,
-    MatInput,
-    MatLabel,
-    MatSuffix,
-    MatError,
-    ReactiveFormsModule,
-    KeyValuePipe,
-    FormErrorsPipe,
-    MatIcon,
-    MatIconButton,
-    RouterLink
-  ],
-  templateUrl: './signup.component.html',
-  styleUrl: './signup.component.scss'
+    selector: 'app-signup',
+    imports: [
+        MatCard,
+        MatButton,
+        MatCardContent,
+        MatFormField,
+        MatInput,
+        MatLabel,
+        MatSuffix,
+        MatError,
+        ReactiveFormsModule,
+        KeyValuePipe,
+        FormErrorsPipe,
+        MatIcon,
+        MatIconButton,
+        RouterLink
+    ],
+    templateUrl: './signup.component.html',
+    styleUrl: './signup.component.scss'
 })
 export class SignupComponent {
   private readonly _appStore = inject(AppStore);

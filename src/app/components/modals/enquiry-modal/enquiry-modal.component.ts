@@ -10,17 +10,16 @@ import {
 import { MatButton } from '@angular/material/button';
 
 @Component({
-  selector: 'app-enquiry-modal',
-  standalone: true,
-  imports: [
-    MatDialogContent,
-    MatDialogActions,
-    MatDialogTitle,
-    MatButton,
-    MatDialogClose
-  ],
-  templateUrl: './enquiry-modal.component.html',
-  styleUrl: './enquiry-modal.component.scss'
+    selector: 'app-enquiry-modal',
+    imports: [
+        MatDialogContent,
+        MatDialogActions,
+        MatDialogTitle,
+        MatButton,
+        MatDialogClose
+    ],
+    templateUrl: './enquiry-modal.component.html',
+    styleUrl: './enquiry-modal.component.scss'
 })
 export class EnquiryModalComponent {
   private readonly _dialogRef = inject(MatDialogRef<EnquiryModalComponent>);

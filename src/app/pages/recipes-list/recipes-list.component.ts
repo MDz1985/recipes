@@ -1,6 +1,5 @@
 import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 import { RecipeItemComponent } from 'src/app/pages/recipes-list/components/recipe-item/recipe-item.component';
-import { AsyncPipe } from '@angular/common';
 import { RecipesStore } from 'src/app/store/recipes-store';
 import { MatFormField, MatInput, MatLabel } from '@angular/material/input';
 import { MatButton } from '@angular/material/button';
@@ -12,21 +11,19 @@ import { MatProgressSpinner } from '@angular/material/progress-spinner';
 import { AppStore } from 'src/app/store/app.store';
 
 @Component({
-  selector: 'app-recipes-list',
-  standalone: true,
-  imports: [
-    RecipeItemComponent,
-    AsyncPipe,
-    MatInput,
-    MatFormField,
-    MatLabel,
-    MatButton,
-    MatProgressSpinner,
-  ],
-  templateUrl: './recipes-list.component.html',
-  styleUrl: './recipes-list.component.scss',
-  providers: [RecipesStore],
-  changeDetection: ChangeDetectionStrategy.OnPush
+    selector: 'app-recipes-list',
+    imports: [
+        RecipeItemComponent,
+        MatInput,
+        MatFormField,
+        MatLabel,
+        MatButton,
+        MatProgressSpinner,
+    ],
+    templateUrl: './recipes-list.component.html',
+    styleUrl: './recipes-list.component.scss',
+    providers: [RecipesStore],
+    changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class RecipesListComponent {
   private readonly _store = inject(RecipesStore);
