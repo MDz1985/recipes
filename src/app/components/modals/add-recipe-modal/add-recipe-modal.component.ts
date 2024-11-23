@@ -5,36 +5,29 @@ import { CdkTextareaAutosize } from '@angular/cdk/text-field';
 import { DropzoneCdkModule } from '@ngx-dropzone/cdk';
 import { DropzoneMaterialModule } from '@ngx-dropzone/material';
 import { MatButton } from '@angular/material/button';
-import { MatChipRemove, MatChipRow } from '@angular/material/chips';
-import { MatError, MatFormField, MatLabel, MatSuffix } from '@angular/material/form-field';
-import { MatIcon } from '@angular/material/icon';
+import { MatError, MatFormField, MatLabel } from '@angular/material/form-field';
 import { MatInput } from '@angular/material/input';
 
 @Component({
-  selector: 'app-add-recipe-modal',
-  standalone: true,
-  imports: [
-    CdkTextareaAutosize,
-    DropzoneCdkModule,
-    DropzoneMaterialModule,
-    FormsModule,
-    MatButton,
-    MatChipRemove,
-    MatChipRow,
-    MatDialogActions,
-    MatDialogClose,
-    MatDialogContent,
-    MatDialogTitle,
-    MatError,
-    MatFormField,
-    MatIcon,
-    MatInput,
-    MatLabel,
-    MatSuffix,
-    ReactiveFormsModule
-  ],
-  templateUrl: './add-recipe-modal.component.html',
-  styleUrl: './add-recipe-modal.component.scss'
+    selector: 'app-add-recipe-modal',
+    imports: [
+        CdkTextareaAutosize,
+        DropzoneCdkModule,
+        DropzoneMaterialModule,
+        FormsModule,
+        MatButton,
+        MatDialogActions,
+        MatDialogClose,
+        MatDialogContent,
+        MatDialogTitle,
+        MatError,
+        MatFormField,
+        MatInput,
+        MatLabel,
+        ReactiveFormsModule
+    ],
+    templateUrl: './add-recipe-modal.component.html',
+    styleUrl: './add-recipe-modal.component.scss'
 })
 export class AddRecipeModalComponent {
   private readonly _fb: FormBuilder = inject(FormBuilder);

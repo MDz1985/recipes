@@ -5,15 +5,14 @@ import { MatIcon } from '@angular/material/icon';
 import { Recipe } from 'graphql/generated';
 
 @Component({
-  selector: 'app-recipe-item',
-  standalone: true,
-  imports: [
-    RouterLink,
-    MatIconButton,
-    MatIcon
-  ],
-  templateUrl: './recipe-item.component.html',
-  styleUrl: './recipe-item.component.scss',
+    selector: 'app-recipe-item',
+    imports: [
+        RouterLink,
+        MatIconButton,
+        MatIcon
+    ],
+    templateUrl: './recipe-item.component.html',
+    styleUrl: './recipe-item.component.scss'
 })
 export class RecipeItemComponent {
   @Output() recipeForDeleteId = new EventEmitter<string>();

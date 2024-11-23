@@ -11,25 +11,24 @@ import { MatInput } from '@angular/material/input';
 import { CdkTextareaAutosize } from '@angular/cdk/text-field';
 
 @Component({
-  selector: 'app-add-step-modal',
-  standalone: true,
-  imports: [
-    MatDialogContent,
-    MatDialogActions,
-    MatDialogTitle,
-    MatButton,
-    MatDialogClose,
-    MatFormFieldModule,
-    DropzoneCdkModule,
-    DropzoneMaterialModule,
-    MatIconModule,
-    MatChipsModule,
-    ReactiveFormsModule,
-    MatInput,
-    CdkTextareaAutosize
-  ],
-  templateUrl: './add-step-modal.component.html',
-  styleUrl: './add-step-modal.component.scss'
+    selector: 'app-add-step-modal',
+    imports: [
+        MatDialogContent,
+        MatDialogActions,
+        MatDialogTitle,
+        MatButton,
+        MatDialogClose,
+        MatFormFieldModule,
+        DropzoneCdkModule,
+        DropzoneMaterialModule,
+        MatIconModule,
+        MatChipsModule,
+        ReactiveFormsModule,
+        MatInput,
+        CdkTextareaAutosize
+    ],
+    templateUrl: './add-step-modal.component.html',
+    styleUrl: './add-step-modal.component.scss'
 })
 export class AddStepModalComponent {
   private readonly _fb: FormBuilder = inject(FormBuilder);

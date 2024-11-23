@@ -6,17 +6,16 @@ import { MatButton, MatIconButton } from '@angular/material/button';
 import { RouterLink } from '@angular/router';
 
 @Component({
-  selector: 'app-header',
-  standalone: true,
-  imports: [
-    MatToolbar,
-    MatIcon,
-    MatIconButton,
-    MatButton,
-    RouterLink,
-  ],
-  templateUrl: './header.component.html',
-  styleUrl: './header.component.scss'
+    selector: 'app-header',
+    imports: [
+        MatToolbar,
+        MatIcon,
+        MatIconButton,
+        MatButton,
+        RouterLink,
+    ],
+    templateUrl: './header.component.html',
+    styleUrl: './header.component.scss'
 })
 export class HeaderComponent {
   private readonly _appStore = inject(AppStore);

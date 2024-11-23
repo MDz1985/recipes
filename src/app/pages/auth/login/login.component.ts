@@ -11,27 +11,26 @@ import { MatInput } from '@angular/material/input';
 import { AppStore } from 'src/app/store/app.store';
 
 @Component({
-  selector: 'app-login',
-  standalone: true,
-  imports: [
-    MatButton,
-    RouterLink,
-    FormErrorsPipe,
-    FormsModule,
-    KeyValuePipe,
-    MatCard,
-    MatCardContent,
-    MatError,
-    MatFormField,
-    MatIcon,
-    MatIconButton,
-    MatInput,
-    MatLabel,
-    MatSuffix,
-    ReactiveFormsModule
-  ],
-  templateUrl: './login.component.html',
-  styleUrl: './login.component.scss'
+    selector: 'app-login',
+    imports: [
+        MatButton,
+        RouterLink,
+        FormErrorsPipe,
+        FormsModule,
+        KeyValuePipe,
+        MatCard,
+        MatCardContent,
+        MatError,
+        MatFormField,
+        MatIcon,
+        MatIconButton,
+        MatInput,
+        MatLabel,
+        MatSuffix,
+        ReactiveFormsModule
+    ],
+    templateUrl: './login.component.html',
+    styleUrl: './login.component.scss'
 })
 export class LoginComponent {
   private readonly _appStore = inject(AppStore);

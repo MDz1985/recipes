@@ -2,26 +2,23 @@ import { Component, inject } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { MatDialogActions, MatDialogClose, MatDialogContent, MatDialogRef, MatDialogTitle } from '@angular/material/dialog';
 import { MatInput } from '@angular/material/input';
-import { CdkTextareaAutosize } from '@angular/cdk/text-field';
 import { MatButton } from '@angular/material/button';
 import { MatFormFieldModule } from '@angular/material/form-field';
 
 @Component({
-  selector: 'app-add-ingredient-modal',
-  standalone: true,
-  imports: [
-    MatDialogContent,
-    MatDialogActions,
-    MatDialogTitle,
-    MatButton,
-    MatDialogClose,
-    MatFormFieldModule,
-    ReactiveFormsModule,
-    MatInput,
-    CdkTextareaAutosize
-  ],
-  templateUrl: './add-ingredient-modal.component.html',
-  styleUrl: './add-ingredient-modal.component.scss'
+    selector: 'app-add-ingredient-modal',
+    imports: [
+        MatDialogContent,
+        MatDialogActions,
+        MatDialogTitle,
+        MatButton,
+        MatDialogClose,
+        MatFormFieldModule,
+        ReactiveFormsModule,
+        MatInput,
+    ],
+    templateUrl: './add-ingredient-modal.component.html',
+    styleUrl: './add-ingredient-modal.component.scss'
 })
 export class AddIngredientModalComponent {
   private readonly _fb: FormBuilder = inject(FormBuilder);
