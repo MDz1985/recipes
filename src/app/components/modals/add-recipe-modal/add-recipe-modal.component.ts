@@ -2,8 +2,6 @@ import { Component, inject } from '@angular/core';
 import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { MatDialogActions, MatDialogClose, MatDialogContent, MatDialogRef, MatDialogTitle } from '@angular/material/dialog';
 import { CdkTextareaAutosize } from '@angular/cdk/text-field';
-import { DropzoneCdkModule } from '@ngx-dropzone/cdk';
-import { DropzoneMaterialModule } from '@ngx-dropzone/material';
 import { MatButton } from '@angular/material/button';
 import { MatError, MatFormField, MatLabel } from '@angular/material/form-field';
 import { MatInput } from '@angular/material/input';
@@ -12,8 +10,6 @@ import { MatInput } from '@angular/material/input';
     selector: 'app-add-recipe-modal',
     imports: [
         CdkTextareaAutosize,
-        DropzoneCdkModule,
-        DropzoneMaterialModule,
         FormsModule,
         MatButton,
         MatDialogActions,

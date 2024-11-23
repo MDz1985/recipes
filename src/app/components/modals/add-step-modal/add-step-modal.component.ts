@@ -2,31 +2,29 @@ import { Component, inject } from '@angular/core';
 import { MatDialogActions, MatDialogClose, MatDialogContent, MatDialogRef, MatDialogTitle } from '@angular/material/dialog';
 import { MatButton } from '@angular/material/button';
 import { MatFormFieldModule } from '@angular/material/form-field';
-import { DropzoneMaterialModule } from '@ngx-dropzone/material';
 import { MatIconModule } from '@angular/material/icon';
-import { DropzoneCdkModule } from '@ngx-dropzone/cdk';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { MatChipsModule } from '@angular/material/chips';
 import { MatInput } from '@angular/material/input';
 import { CdkTextareaAutosize } from '@angular/cdk/text-field';
+import { MatDropzone } from '@ngx-dropzone/material';
 
 @Component({
     selector: 'app-add-step-modal',
-    imports: [
-        MatDialogContent,
-        MatDialogActions,
-        MatDialogTitle,
-        MatButton,
-        MatDialogClose,
-        MatFormFieldModule,
-        DropzoneCdkModule,
-        DropzoneMaterialModule,
-        MatIconModule,
-        MatChipsModule,
-        ReactiveFormsModule,
-        MatInput,
-        CdkTextareaAutosize
-    ],
+  imports: [
+    MatDialogContent,
+    MatDialogActions,
+    MatDialogTitle,
+    MatButton,
+    MatDialogClose,
+    MatFormFieldModule,
+    MatIconModule,
+    MatChipsModule,
+    ReactiveFormsModule,
+    MatInput,
+    CdkTextareaAutosize,
+    MatDropzone
+  ],
     templateUrl: './add-step-modal.component.html',
     styleUrl: './add-step-modal.component.scss'
 })
