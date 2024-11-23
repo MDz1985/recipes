@@ -28,14 +28,14 @@ jobs:
       - run: cp src/environments/environment.pipeline.ts src/environments/environment.ts
       - run: cp src/environments/environment.pipeline.ts src/environments/environment.prod.ts
 
-      - run: echo "Environment variables:"
-      - run: env
-      - run: echo "Environment variables:"
-      - run: echo "API_URL=$(API_URL)"
-      - run: echo "FB_PROJECT_ID=$(FB_PROJECT_ID)"
-      - run: echo "Environment.ts file:"
+#      - run: echo "Environment variables:"
+#      - run: env
+#      - run: echo "Environment variables:"
+#      - run: echo "API_URL=$(API_URL)"
+#      - run: echo "FB_PROJECT_ID=$(FB_PROJECT_ID)"
+#      - run: echo "Environment.ts file:"
       - run: cat src/environments/environment.ts
-      - run: echo "${{ secrets.API_URL }}"
+#      - run: echo "${{ secrets.API_URL }}"
 # Remove --legacy-peer-deps when ngrx will be updated
       - run: npm ci --legacy-peer-deps && npm run gql-generate && npm run build
       - uses: FirebaseExtended/action-hosting-deploy@v0
