@@ -2,16 +2,18 @@
 # https://github.com/firebase/firebase-tools
 
 name: Deploy to Firebase Hosting on merge
-'on':
+on:
   push:
     branches:
       - dev
+
 permissions:
   id-token: write
   contents: read
   security-events: write
   checks: write
   pull-requests: write
+
 jobs:
   build_and_deploy:
     runs-on: ubuntu-latest
@@ -42,20 +44,19 @@ jobs:
       - run: cp src/environments/environment.pipeline.ts src/environments/environment.ts
       - run: cp src/environments/environment.pipeline.ts src/environments/environment.prod.ts
 
-      - run: echo "Environment variables:"
-      - run: env
-      - run: echo "Environment variables:"
-      - run: echo "API_URL=$(API_URL)"
-      - run: echo "FB_PROJECT_ID=$(FB_PROJECT_ID)"
-      - run: echo "Environment.ts file:"
-      - run: cat src/environments/environment.ts
-      - run: echo "${{ secrets.API_URL }}"
+#      - run: echo "Environment variables:"
+#      - run: env
+#      - run: echo "Environment variables:"
+#      - run: echo "API_URL=$(API_URL)"
+#      - run: echo "FB_PROJECT_ID=$(FB_PROJECT_ID)"
+#      - run: echo "Environment.ts file:"
 
-      - run: npm ci && npm run gql-generate && npm run build
+      - run: cat src/environments/environment.ts
+# Remove --legacy-peer-deps when ngrx will be updated
+      - run: npm ci --legacy-peer-deps && npm run gql-generate && npm run build
       - uses: FirebaseExtended/action-hosting-deploy@v0
         with:
-          node-version: 20
-          repoToken: '${{ secrets.GITHUB_TOKEN }}'
-          firebaseServiceAccount: '${{ secrets.FIREBASE_SERVICE_ACCOUNT_RECIPES_91982 }}'
+          repoToken: ${{ secrets.GITHUB_TOKEN }}
+          firebaseServiceAccount: ${{ secrets.FIREBASE_SERVICE_ACCOUNT_RECIPES_91982 }}
           channelId: live
           projectId: recipes-91982

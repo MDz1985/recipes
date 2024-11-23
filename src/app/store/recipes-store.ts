@@ -10,7 +10,6 @@ import {
   tap
 } from 'rxjs';
 import { RecipesService } from 'src/app/services/recipes.service';
-import { Router } from '@angular/router';
 import { Recipe, RecipeInput } from 'graphql/generated';
 import { AppStore } from 'src/app/store/app.store';
 
@@ -38,7 +37,7 @@ export const RecipesStore = signalStore(
       );
     }),
   })),
-  withMethods((store, recipesService = inject(RecipesService), router = inject(Router)) => ({
+  withMethods((store, recipesService = inject(RecipesService)) => ({
     _addRecipeToState(recipe: Recipe) {
       patchState(store, (state) => ({
         recipes: [...state.recipes, recipe],
@@ -131,7 +130,7 @@ export const RecipesStore = signalStore(
           } else {
             store.reset();
           }
-        }, { allowSignalWrites: true });
+        });
       }
     };
   })

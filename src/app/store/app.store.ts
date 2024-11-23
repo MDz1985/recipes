@@ -3,14 +3,12 @@ import { signalStore, withComputed, withMethods } from '@ngrx/signals';
 import { computed, inject } from '@angular/core';
 import { AuthService } from 'src/app/services/auth.service';
 import { toSignal } from '@angular/core/rxjs-interop';
-import { tap } from 'rxjs';
 
 export const AppStore = signalStore(
   { providedIn: 'root' },
   withComputed((_, auth = inject(Auth)) => ({
-    // todo: remove console
-    user: toSignal(user(auth).pipe(tap((user) => console.log('Signal is loading', user)))),
-    token: toSignal(idToken(auth).pipe(tap((token) => console.log('Signal is loading', token)))),
+    user: toSignal(user(auth)),
+    token: toSignal(idToken(auth)),
   })),
   withComputed(({ user }) => ({
     isLoggedIn: computed(() => {
